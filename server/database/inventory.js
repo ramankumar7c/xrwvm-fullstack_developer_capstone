@@ -1,33 +1,12 @@
-const { Int32 } = require('mongodb');
-const mongoose = require('mongoose');
+/* jshint esversion: 8 */
+/* jshint node: true */
 
-const Schema = mongoose.Schema;
+const { MongoClient } = require('mongodb');
 
-const cars = new Schema({
-dealer_id: {
-    type: Number,
-    required: true
-},
-make: {
-    type: String,
-    required: true
-  },
-model: {
-    type: String,
-    required: true
-  },
-bodyType: {
-    type: String,
-    required: true
-  },
-year: {
-    type: Number,
-    required: true
-  },
-mileage: {
-    type: Number,
-    required: true
-  }
-});
+const uri = "mongodb://mongo_db:27017/";
 
-module.exports = mongoose.model('cars', cars);
+const client = new MongoClient(uri);
+
+const database = client.db('dealershipsDB');
+
+module.exports = database;
